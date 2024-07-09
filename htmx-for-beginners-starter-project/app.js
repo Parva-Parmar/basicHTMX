@@ -1,6 +1,7 @@
 import express from 'express';
 import createHomepageTemplate from './views/index.js';
 import createListTemmplate from './views/list.js';
+import createBookTemplate from './views/book.js';
 import BOOKS_DATA from './data/data.js';
 
 // create app
@@ -25,7 +26,14 @@ app.post('/books',(req,res) =>{
 
   BOOKS_DATA.push({id,title,author});
 
-  res.send(`<li>${title},${author}</li>`);
+  res.redirect(`/books/${id}`);
+})
+
+app.get('/book/:id',(req,res) => {
+  const {id} = req.params;
+  const book = BOOKS_DATA.find((b) => b.id === id);
+
+  res.send(createBookTemplate(book));
 })
 
 // listen to port
