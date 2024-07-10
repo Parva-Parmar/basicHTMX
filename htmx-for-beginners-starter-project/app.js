@@ -29,7 +29,7 @@ app.post('/books',(req,res) =>{
   res.redirect(`/books/${id}`);
 })
 
-app.get('/book/:id',(req,res) => {
+app.get('/books/:id',(req,res) => {
   const {id} = req.params;
   const book = BOOKS_DATA.find((b) => b.id === id);
 
